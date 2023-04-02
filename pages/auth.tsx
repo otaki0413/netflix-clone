@@ -1,7 +1,8 @@
 import { ChangeEvent, useCallback, useState } from "react";
-import Input from "@/components/input";
+import { Input } from "@/components/input";
+import Image from "next/image";
 
-// 認証ページ
+// ログイン画面・新規登録画面用のページ
 const Auth = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -29,12 +30,14 @@ const Auth = () => {
   console.log(variant);
 
   return (
-    <div className="relative h-full bg-[url('/images/hero.jpg')] bg-cover bg-fixed bg-no-repeat">
+    <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-cover bg-fixed bg-no-repeat">
       <div className="h-full w-full bg-black lg:bg-black/50">
         <nav className="px-12 py-5">
-          <img
+          <Image
             src="/images/logo.png"
-            alt="logo"
+            alt="netflix logo"
+            width={200}
+            height={200}
             className="h-12"
           />
         </nav>
@@ -43,7 +46,7 @@ const Auth = () => {
             <h2 className="mb-8 text-4xl font-semibold text-white">
               {variant === "login" ? "Sign in" : "Register"}
             </h2>
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-4">
               {variant === "register" ? (
                 <Input
                   label="UserName"
