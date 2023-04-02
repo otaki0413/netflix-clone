@@ -1,9 +1,13 @@
 import { ChangeEvent, useCallback, useState } from "react";
 import { Input } from "@/components/input";
 import Image from "next/image";
+import axios from "axios";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 // ログイン画面・新規登録画面用のページ
 const Auth = () => {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,6 +30,37 @@ const Auth = () => {
       currentVariant === "login" ? "register" : "login"
     );
   }, []);
+
+  // サインイン時の認証処理
+  const login = useCallback(async () => {
+    try {
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+        callbackUrl: "/",
+      });
+
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, password, router]);
+
+  // 新規登録時の認証処理
+  const register = useCallback(async () => {
+    try {
+      await axios.post("/api/register", {
+        email,
+        name,
+        password,
+      });
+      // ログイン処理を呼び出す
+      login();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, name, password, login]);
 
   console.log(variant);
 
@@ -71,7 +106,10 @@ const Auth = () => {
                 value={password}
               />
             </div>
-            <button className="mt-5 w-full rounded-md bg-red-600 py-3 text-white">
+            <button
+              onClick={variant === "login" ? login : register}
+              className="mt-5 w-full rounded-md bg-red-600 py-3 text-white"
+            >
               {variant === "login" ? "Login" : "Sign up"}
             </button>
             <p className="mt-12 text-neutral-500">
