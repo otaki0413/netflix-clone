@@ -39,8 +39,7 @@ const Auth = () => {
       await signIn("credentials", {
         email,
         password,
-        redirect: false,
-        callbackUrl: "/",
+        callbackUrl: "/profiles",
       });
 
       router.push("/");
@@ -64,7 +63,7 @@ const Auth = () => {
     }
   }, [email, name, password, login]);
 
-  console.log(variant);
+  // console.log(variant);
 
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-cover bg-fixed bg-no-repeat">
@@ -116,7 +115,7 @@ const Auth = () => {
             </button>
             <div className="mt-8 flex flex-row items-center justify-center gap-4">
               <div
-                onClick={() => signIn("github", { callbackUrl: "/" })}
+                onClick={() => signIn("github", { callbackUrl: "/profiles" })}
                 className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white transition hover:opacity-80"
               >
                 <FaGithub size={30} />
