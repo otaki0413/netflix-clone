@@ -40,7 +40,7 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed z-40  w-full">
+    <nav className="fixed z-40 w-full">
       <div
         className={`
           flex
@@ -55,21 +55,9 @@ export const Navbar = () => {
           ${isShowBackGround ? "bg-zinc-900/90" : ""}
         `}
       >
-        <img
-          className="h-4 lg:h-7"
-          src="/images/logo.png"
-          alt="Logo"
-        />
+        <img className="h-4 lg:h-7" src="/images/logo.png" alt="Logo" />
         {/* 1024px以上： ナビゲーションメニュー */}
-        <div
-          className="
-          ml-8
-          hidden
-          flex-row
-          gap-7
-          lg:flex
-        "
-        >
+        <div className="ml-8 hidden flex-row gap-7 lg:flex">
           <NavbarItem label="Home" />
           <NavbarItem label="Series" />
           <NavbarItem label="Films" />
@@ -78,7 +66,7 @@ export const Navbar = () => {
           <NavbarItem label="Browse by language" />
         </div>
 
-        {/* 1024px未満： ナビゲーションメニュー */}
+        {/* 1024px未満： ハンバーガーメニュー */}
         <div
           onClick={toggleMobileMenu}
           className="relative ml-8 flex cursor-pointer flex-row items-center gap-2 lg:hidden"
@@ -105,10 +93,7 @@ export const Navbar = () => {
             className="relative flex cursor-pointer flex-row items-center gap-2"
           >
             <div className="h-6 w-6 overflow-hidden rounded-md lg:h-10 lg:w-10">
-              <img
-                src="/images/default-blue.png"
-                alt=""
-              />
+              <img src="/images/default-blue.png" alt="" />
             </div>
             <BsChevronDown
               className={`text-white transition ${

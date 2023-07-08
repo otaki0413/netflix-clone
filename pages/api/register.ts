@@ -40,7 +40,6 @@ export default async function handler(
     });
     // 登録ユーザ情報を返却
     return res.status(200).json(user);
-
   } catch (error) {
     console.log(error);
     return res.status(400).end();

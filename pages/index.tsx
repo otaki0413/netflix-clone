@@ -1,6 +1,7 @@
 import { NextPageContext } from "next";
-import { getSession, signOut } from "next-auth/react";
-import useCurrentUser from "@/hooks/useCurrentUser";
+import { getSession } from "next-auth/react";
+import { Navbar } from "@/components/Navbar";
+import { Billboard } from "@/components/Billboard";
 
 // ====================
 // サーバー側で実行させたい関数
@@ -8,7 +9,6 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 export async function getServerSideProps(context: NextPageContext) {
   // セッション情報取得
   const session = await getSession(context);
-  console.log(`テスト：${session}`);
 
   // セッションがない場合
   if (!session) {
@@ -25,17 +25,12 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 export default function Home() {
-  const { data: user } = useCurrentUser();
   return (
     <>
-      <h1 className="text-4xl text-green-500">Netflix Clone</h1>
-      <p className="text-white">Logged in as : {user?.email}</p>
-      <button
-        className="h-10 w-full bg-white"
-        onClick={() => signOut()}
-      >
-        Logout!
-      </button>
+      <Navbar />
+      <div>
+      <Billboard />
+      </div>
     </>
   );
-}
+}     

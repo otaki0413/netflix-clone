@@ -25,8 +25,8 @@ export const AccountMenu: FC<AccountMenuProps> = ({ visible }) => {
           </p>
         </div>
         <hr className="my-4 h-px border-0 bg-gray-600" />
-        <div className="px-3 text-center text-sm text-white hover:underline">
-          Sign out of Netflix
+        <div className="flex items-center justify-center px-1 text-center text-sm text-white hover:underline">
+          Sign out
         </div>
       </div>
     </div>
